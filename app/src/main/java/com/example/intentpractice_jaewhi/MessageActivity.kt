@@ -9,7 +9,7 @@ class MessageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_message)
 
-//        이 화면에 들어올때 첨부된 데이터를 텍스트뷰에 반영
+//        이 화면에 들어올때 첨부된 데이터를 텍스트뷰에 반영 (도착지에서 티켓을 검사한다)
         val intentMessage = intent.getStringExtra("message")
         receivedMessageTxt.text = intentMessage
 
