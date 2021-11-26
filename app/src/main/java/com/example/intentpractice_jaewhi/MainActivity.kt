@@ -16,11 +16,12 @@ class MainActivity : AppCompatActivity() {
         editNicknameBtn.setOnClickListener {
 
             val myIntent = Intent(this, EditNicknameActivity::class.java)
+//            편도가 아닌 왕복 티켓을 끊자! - startActivityForResult
             startActivityForResult(myIntent, REQUEST_FOR_NICKNAME)
 
         }
 
-
+// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
         sendMessageBtn.setOnClickListener {
 //        입력한 내용을 변수에 저장
@@ -34,6 +35,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(myIntent)
         }
 
+// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
         moveToOtherBtn.setOnClickListener {
 
 //            다른 화면으로 이동 (OtherActivity)
@@ -43,4 +46,26 @@ class MainActivity : AppCompatActivity() {
 
         }
    }
+
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+//        돌아온 이유가 닉네임을 받으러 다녀온게 맞는지?
+        if (requestCode == REQUEST_FOR_NICKNAME){
+
+//          추가질문 : 확인을 눌러서 돌아온 게 맞는지?
+            if (resultCode == RESULT_OK){
+
+//                실제 첨부된 새 닉네임을 꺼내서 텍스트뷰에 반영.
+                val newNickname = data?.getStringExtra("nickname")
+                nicknameTxt.text = newNickname
+
+            }
+
+        }
+
+    }
+
 }
